@@ -255,13 +255,13 @@ LOGOUT_AFTER_SLO=true
 
 [Saml2 Service Provider](https://github.com/SocialiteProviders/Saml2) 進行 SLO 時，需要 IDP 的 metadata 提供 SingleLogoutService 的 Location，這在 [Laravel SAML IdP](https://github.com/codegreencreative/laravel-samlidp) 的預設 metadata XML 樣版中是不存在的，因此我們需要自行添加這部份。
 
-首先需將 [Saml2 Service Provider](https://github.com/SocialiteProviders/Saml2) metadata view 加到 resources/views 下，加入 SingleLogoutService 那行：
+首先需將 [Saml2 Service Provider](https://github.com/SocialiteProviders/Saml2) metadata view 加到 resources/views 下：
 
 ```bash
 php artisan vendor:publish --tag="samlidp_views"
 ```
 
-然後修改 `resources/views/samlidp/metadata.blade.php`
+然後修改 `resources/views/samlidp/metadata.blade.php` 加入 SingleLogoutService 那行
 
 ```xml
     ...
