@@ -62,7 +62,7 @@ openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -keyout sp_key.pem -
 
 我是將 certifications 放在 storage/saml2 目錄下，下面 `config/services.php` 中的設定也對應此處。
 
-產生的憑 cert 檔需要在 IDP 的 config/samlidp.php 檔案中，針對對應的 SP 進行指定。 可以將憑證檔案直接存放在 IDP 伺服器上，或將憑證的內容以字串形式嵌入到設定檔中。
+產生的 cert 檔需要在 IDP 的 config/samlidp.php 檔案中，針對對應的 SP 進行指定。 可以將憑證檔案直接存放在 IDP 伺服器上，或將憑證的內容以字串形式嵌入到設定檔中。
 
 ### `config/services.php`
 
@@ -73,8 +73,8 @@ openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -keyout sp_key.pem -
   // IDP 的 metadata URL, 我將 IDP metadata URL 定義在 .env 檔中，以便區隔測試環境及正式環境
   'sp_certificate' => file_get_contents(storage_path('saml2/sp_cert.pem')), // 之前產生的憑證檔案
   'sp_private_key' => file_get_contents(storage_path('saml2/sp_key.pem')),
-  'sp_sign_assertions' => true, // 這邊設為 true 及  false 沒什麼差別
-  'sp_sls' => 'saml/logout',  // IDP 登出時會訪問這個 route
+  'sp_sign_assertions' => true, // 這邊設為 true 及  false 對其他部份沒什麼影響
+  'sp_sls' => 'auth/logout',  // SP 的 SLO route
 ],
 ```
 
@@ -112,7 +112,7 @@ Route::post('/auth/callback', function () {
  * 對 IDP 發送 SLO 請求用
  *
  */
-Route::get('/saml/logout', function () {
+Route::get('/autn/start-slo', function () {
     return redirect(env('SAML2_LOGOUT_URL'));
 });
 
