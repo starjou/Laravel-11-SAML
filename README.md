@@ -1,5 +1,7 @@
 # 用 Laravel 建立一個 SAML2 的 SSO 網站群
 
+## SAML 的基本觀念請參考 [SAML for Web Developers](https://github.com/jch/saml)
+
 ## 使用套件
 
 ### SP [Saml2 Service Provider](https://github.com/SocialiteProviders/Saml2)
