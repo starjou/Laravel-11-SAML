@@ -202,6 +202,12 @@ php artisan samlidp:cert
 'sp_slo_redirects' => config('samlhosts.slo_redirects'),
 ```
 
+### .gitignore
+
+```
+/config/samlhosts.php
+```
+
 #### `config/samlhosts.php`
 
 ```php
@@ -234,6 +240,14 @@ return [
 `slo_redirects` 的每一筆資料就是每個 SP 如果是 SLO 發起者時，最後要轉址過去的 URL。
 
 key 就是 SP 對 IDP 發起 SLO 請求時，網址所帶的 return_to 參數所設定的值，而 value 就是要轉過去的 URL。
+
+#### `.env`
+
+設定當 SP 發起 SLO 請求之後，將 IDP 的使用也登出。
+
+```
+LOGOUT_AFTER_SLO=true
+```
 
 ### 修改 metadata
 
