@@ -243,7 +243,7 @@ key 就是 SP 對 IDP 發起 SLO 請求時，網址所帶的 return_to 參數所
 
 #### `.env`
 
-設定當 SP 發起 SLO 請求之後，將 IDP 的使用也登出。
+設定當 SP 發起 SLO 請求之後，將 IDP 的使用者也登出。
 
 ```
 LOGOUT_AFTER_SLO=true
